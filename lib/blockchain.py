@@ -200,9 +200,15 @@ class Blockchain(util.PrintError):
         num = len(data) // HDR_LEN
         prev_hash = self.get_hash(index * CHUNK_LEN - 1)
         chunk_headers = {'empty': True}
+        offset = 0
         for i in range(num):
-            raw_header = data[i*HDR_LEN:(i+1) * HDR_LEN]
             height = index * CHUNK_LEN + i
+            if height < BUBBLES_ACTIVATION_HEIGHT:
+                raw_header = data[offset:offset+HDR_LEN]
+                offset += HDR_LEN
+            else:
+                raw_header = data[offset:offset+HDR_EH_192_7_LEN]
+                offset += HDR_EH_192_7_LEN
             header = deserialize_header(raw_header, height)
             target = self.get_target(height, chunk_headers)
             self.verify_header(header, prev_hash, target)
