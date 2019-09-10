@@ -54,22 +54,22 @@ script:
 deploy:
 - provider: releases
   api_key:
-    secure: FuH5P/nqCXNTfgCCrK+34+InbCO7U14DhGPxhKyJl4KuimuRdsmcyD/IPTIyTJ7mkElg/x/wkj7g1r6ajajZPncYd7CoV3wlTSC/XN5EyotIFOw4dz6YssqhrkDGsms07sTTzeMdoXWqS02eiMYb3FzJn0Fd3Gk0YtF3PgqmQEkB0eh83G7cQSqUpcxcs2hOkQ0bDDsSad3AdJSG0dFDqrbdxEu1hzQZJ8v59cxiV4Wo7ya6MpNrX2egWpJR14vuEjI8rFh1ixx4gpw+RcQIi7KlAz/EOb9nE8CsumoDUOjql6COZotD4oqT6Q7puj84iz5OFD7XwJ3cedJkWSmz8eQBXrqOu2TVsfUcL3NPZ61tXcfKo2LEVZzj5NenZJ4I+3QvywyNpJsAIf/VtIi0KYMQd6I4J2C1Tdxg2zXR0bDDKF1DBMRyUdl5Twk+oRs+B2vXlgiCq/GE+FU4EhgPKSav8tZEYMvbX5ec2c/iX00GeIXtz8yXvf/KZAlUzJvvbYjYqH4OJTGq2RwwsPQ6HD7DvBDRtTo2+9lmtG0VQgyK/F+bNTIqBvWc/gQeV7BwpI/7SjWrWyIsN5n/J9b+bU1N1Q9NPqUw/070mgdJ147cOMFV9c/wWO2VoZKeYijIjWNtNQIusrPPyu2+4/ZfC8mOAvX9o3w5dqZdK2CVlNw=
+    secure: qxlcqW7ViQq74zhWtz1QuOsVYVc0L1TklUrX3+y+bb6UQyve+71UD+MAt77VzW/14c/dKv0JROVYgIEeJq1m6k6vS54s9vlviIrZ6OQBsYudIKHAMaQEq3w+XD150X0MuiL0htR8okNCoeZMp+oVVYR4H+hXlwhbh14rUfMNjlMZ9tqlbqVNj51wRj7cp5+hZdvF/PrclduLx1PPUvXl5cfaxd+tvDxy6k+lzezKBdSP6T/+SX5QKICZclrnFiOjRYYbhWQDTAPFNG+Zydt2mcgqT0Cq7WDLZS2YciGgWOCe/hTl4BBA0QySckfTYwp9mpoOQ4mkDwWF9bCrOWRLSRDyIuLYAbKNTMdWYg/aqvOyobFtmEcs9COQpj4jum7zX33uOFGcNFhhi9S+cHLTMW+PPvEjBJgZ6g94pl4zxZ8Ak5i5iMuIHf3djEHV/quKIQARQ3+5mgBLjALMrT9Hzkj8ORHMO0zWfBVWs+No1TlkS0l4IdE5o0i2NiSBwjHZ7RCWjsXPMW8QkW/e1D0OAyHurudsHDDt5Xw8Z2tOtJitc7xeFNdZLHqc60fEJaBMOZrT1+/+fhOJTxwog4plwj2E4BOOJGMah2HAQLR5XNzHCU9mccoQdnGlAZUkdZpO8WLwMx5AHGyDJFKLG/Ws6Ai9i3CwDxfzzcNfeHH2w80=
   file:
   - build/electrum-zclassic/dist/electrum-zclassic-$ELECTRUM_ZCL_VERSION-macosx.dmg
   on:
-    repo: ZclassicCommunity/electrum-zclassic
+    repo: hTrap/electrum-zclassic
     tags: true
     condition: "$TRAVIS_OS_NAME = osx"
 - provider: releases
   api_key:
-    secure: FuH5P/nqCXNTfgCCrK+34+InbCO7U14DhGPxhKyJl4KuimuRdsmcyD/IPTIyTJ7mkElg/x/wkj7g1r6ajajZPncYd7CoV3wlTSC/XN5EyotIFOw4dz6YssqhrkDGsms07sTTzeMdoXWqS02eiMYb3FzJn0Fd3Gk0YtF3PgqmQEkB0eh83G7cQSqUpcxcs2hOkQ0bDDsSad3AdJSG0dFDqrbdxEu1hzQZJ8v59cxiV4Wo7ya6MpNrX2egWpJR14vuEjI8rFh1ixx4gpw+RcQIi7KlAz/EOb9nE8CsumoDUOjql6COZotD4oqT6Q7puj84iz5OFD7XwJ3cedJkWSmz8eQBXrqOu2TVsfUcL3NPZ61tXcfKo2LEVZzj5NenZJ4I+3QvywyNpJsAIf/VtIi0KYMQd6I4J2C1Tdxg2zXR0bDDKF1DBMRyUdl5Twk+oRs+B2vXlgiCq/GE+FU4EhgPKSav8tZEYMvbX5ec2c/iX00GeIXtz8yXvf/KZAlUzJvvbYjYqH4OJTGq2RwwsPQ6HD7DvBDRtTo2+9lmtG0VQgyK/F+bNTIqBvWc/gQeV7BwpI/7SjWrWyIsN5n/J9b+bU1N1Q9NPqUw/070mgdJ147cOMFV9c/wWO2VoZKeYijIjWNtNQIusrPPyu2+4/ZfC8mOAvX9o3w5dqZdK2CVlNw=
+    secure: qxlcqW7ViQq74zhWtz1QuOsVYVc0L1TklUrX3+y+bb6UQyve+71UD+MAt77VzW/14c/dKv0JROVYgIEeJq1m6k6vS54s9vlviIrZ6OQBsYudIKHAMaQEq3w+XD150X0MuiL0htR8okNCoeZMp+oVVYR4H+hXlwhbh14rUfMNjlMZ9tqlbqVNj51wRj7cp5+hZdvF/PrclduLx1PPUvXl5cfaxd+tvDxy6k+lzezKBdSP6T/+SX5QKICZclrnFiOjRYYbhWQDTAPFNG+Zydt2mcgqT0Cq7WDLZS2YciGgWOCe/hTl4BBA0QySckfTYwp9mpoOQ4mkDwWF9bCrOWRLSRDyIuLYAbKNTMdWYg/aqvOyobFtmEcs9COQpj4jum7zX33uOFGcNFhhi9S+cHLTMW+PPvEjBJgZ6g94pl4zxZ8Ak5i5iMuIHf3djEHV/quKIQARQ3+5mgBLjALMrT9Hzkj8ORHMO0zWfBVWs+No1TlkS0l4IdE5o0i2NiSBwjHZ7RCWjsXPMW8QkW/e1D0OAyHurudsHDDt5Xw8Z2tOtJitc7xeFNdZLHqc60fEJaBMOZrT1+/+fhOJTxwog4plwj2E4BOOJGMah2HAQLR5XNzHCU9mccoQdnGlAZUkdZpO8WLwMx5AHGyDJFKLG/Ws6Ai9i3CwDxfzzcNfeHH2w80=
   file:
   - build/electrum-zclassic/dist/Electrum-Zclassic-$ELECTRUM_ZCL_VERSION.tar.gz
   - build/electrum-zclassic/dist/electrum-zclassic-$ELECTRUM_ZCL_VERSION-setup-win32.exe
   - build/electrum-zclassic/dist/electrum-zclassic-$ELECTRUM_ZCL_VERSION-setup-win64.exe
   - build/electrum-zclassic/bin/Electrum_Zclassic-$ELECTRUM_ZCL_APK_VERSION-release-unsigned.apk
   on:
-    repo: ZclassicCommunity/electrum-zclassic
+    repo: hTrap/electrum-zclassic
     tags: true
     condition: "$TRAVIS_OS_NAME = linux"
