@@ -294,12 +294,15 @@ class Blockchain(util.PrintError):
     def read_header(self, height):
         assert self.parent_id != self.checkpoint
         if height < 0:
+            print('height1 {}'.format(height))
             return
         if height < self.checkpoint:
             return self.parent().read_header(height)
         if height > self.height():
+            print('height2 {}'.format(height))
             return
         delta = height - self.checkpoint
+        print('delta {}'.format(delta))
         name = self.path()
         if os.path.exists(name):
             with open(name, 'rb') as f:
@@ -312,6 +315,7 @@ class Blockchain(util.PrintError):
         else:
             raise Exception('Cannot find headers file but datadir is there. Should be at {}'.format(name))
         if h == bytes([0])*HDR_LEN:
+            print('height3 {}\n h {}'.format(height, h))
             return None
         return deserialize_header(h, height)
 
