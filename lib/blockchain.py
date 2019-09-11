@@ -356,6 +356,8 @@ class Blockchain(util.PrintError):
         return min(target, self.target_to_bits(MAX_TARGET))
 
     def get_target(self, height, chunk_headers=None):
+        if height >= BUBBLES_ACTIVATION_HEIGHT:
+            print("get_target height: {}".format(height))
         if chunk_headers is None or chunk_headers['empty']:
             chunk_empty = True
         else:
@@ -369,13 +371,16 @@ class Blockchain(util.PrintError):
         if height >= DIFFADJ_ACTIVATION_HEIGHT and height < DIFFADJ_ACTIVATION_HEIGHT + POW_AVERAGING_WINDOW:
             header = self.read_header(height)
             prev_header = self.read_header(height-1)
-
+            print("DIFFADJ height: {}".format(height))
             if header and header.get('timestamp') > prev_header.get('timestamp') + POW_TARGET_SPACING * 12:
+                print("Returning level 1 difficulty")
                 return MAX_TARGET
             elif header and header.get('timestamp') > prev_header.get('timestamp') + POW_TARGET_SPACING * 6:
+                print("Returning level 2 difficulty")
                 difficulty = self.increase_difficulty_by(self.target_to_bits(MAX_TARGET), 128)
                 return self.bits_to_target(difficulty)
             elif header and header.get('timestamp') > prev_header.get('timestamp') + POW_TARGET_SPACING * 2:
+                print("Returning level 3 difficulty")
                 difficulty = self.increase_difficulty_by(self.target_to_bits(MAX_TARGET), 256)
                 return self.bits_to_target(difficulty)
 
