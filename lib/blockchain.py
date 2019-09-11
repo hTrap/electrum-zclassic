@@ -369,9 +369,10 @@ class Blockchain(util.PrintError):
             return MAX_TARGET
 
         if height >= DIFFADJ_ACTIVATION_HEIGHT and height < DIFFADJ_ACTIVATION_HEIGHT + POW_AVERAGING_WINDOW:
-            header = self.read_header(height)
-            prev_header = self.read_header(height-1)
+            header = self.read_header(height-1)
+            prev_header = self.read_header(height-2)
             print("DIFFADJ height: {}".format(height))
+            print("header - {} \n prev_header - {}".format(header,prev_header))
             if header and header.get('timestamp') > prev_header.get('timestamp') + POW_TARGET_SPACING * 12:
                 print("Returning level 1 difficulty")
                 return MAX_TARGET
