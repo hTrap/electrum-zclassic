@@ -32,6 +32,7 @@ HDR_LEN = 1487
 HDR_EH_192_7_LEN = 543
 CHUNK_LEN = 100
 BUBBLES_ACTIVATION_HEIGHT = 585318
+DIFFADJ_ACTIVATION_HEIGHT = 585322
 
 MAX_TARGET = 0x0007FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
 POW_AVERAGING_WINDOW = 17
@@ -350,6 +351,10 @@ class Blockchain(util.PrintError):
         median.sort()
         return median[len(median)//2];
 
+    def increase_difficulty_by(self, bits, multiplier):
+        target //= multiplier
+        return min(target, self.target_to_bits(MAX_TARGET))
+
     def get_target(self, height, chunk_headers=None):
         if chunk_headers is None or chunk_headers['empty']:
             chunk_empty = True
@@ -360,6 +365,19 @@ class Blockchain(util.PrintError):
 
         if height <= POW_AVERAGING_WINDOW:
             return MAX_TARGET
+
+        if height >= DIFFADJ_ACTIVATION_HEIGHT and height < DIFFADJ_ACTIVATION_HEIGHT + POW_AVERAGING_WINDOW:
+            header = self.read_header(height)
+            prev_header = self.read_header(height-1)
+
+            if header and header.get('timestamp') > prev_header.get('timestamp') + POW_TARGET_SPACING * 12:
+                return MAX_TARGET
+            elif header and header.get('timestamp') > prev_header.get('timestamp') + POW_TARGET_SPACING * 6:
+                difficulty = self.increase_difficulty_by(self.target_to_bits(MAX_TARGET), 128)
+                return self.bits_to_target(difficulty)
+            elif header and header.get('timestamp') > prev_header.get('timestamp') + POW_TARGET_SPACING * 2:
+                difficulty = self.increase_difficulty_by(self.target_to_bits(MAX_TARGET), 256)
+                return self.bits_to_target(difficulty)
 
         height_range = range(max(0, height - POW_AVERAGING_WINDOW),
                              max(1, height))
