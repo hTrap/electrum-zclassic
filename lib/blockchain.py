@@ -175,6 +175,7 @@ class Blockchain(util.PrintError):
         return self
 
     def height(self):
+        print('cheeckpoint {}\n size {}'.format(self.checkpoint, self.size()))
         return self.checkpoint + self.size() - 1
 
     def size(self):
@@ -299,10 +300,9 @@ class Blockchain(util.PrintError):
         if height < self.checkpoint:
             return self.parent().read_header(height)
         if height > self.height():
-            print('height2 {}'.format(height))
+            print('height2 {} \nself.height {}'.format(height, self.height()))
             return
         delta = height - self.checkpoint
-        print('delta {}'.format(delta))
         name = self.path()
         if os.path.exists(name):
             with open(name, 'rb') as f:
