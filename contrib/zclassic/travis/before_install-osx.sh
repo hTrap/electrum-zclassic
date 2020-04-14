@@ -8,7 +8,7 @@ fi
 
 cd build
 
-brew update
+brew update-reset
 brew tap zebra-lucky/qt5
 brew install zebra-lucky/qt5/qt
 brew install gettext
